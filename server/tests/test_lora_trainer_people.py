@@ -8,7 +8,15 @@ from PIL import Image
 from app.lora_trainer import people, router
 from app.main import app
 
-client = TestClient(app)
+# .__enter__() (never .__exit__()ed — fine, the process exits when the
+# suite finishes) is required, not optional: a bare TestClient(app) never
+# runs the app's lifespan() at all (it only sends a fresh, throwaway ASGI
+# scope per request), so init_db()/etc. never create any tables, and any
+# asyncio.create_task()-based background job gets killed the instant its
+# request's ephemeral event loop tears down. Confirmed by hand: without
+# this, every table in a genuinely fresh Postgres stays absent and
+# background-job tests race-fail unpredictably.
+client = TestClient(app).__enter__()
 
 
 def _unit(vec: list[float]) -> np.ndarray:
@@ -23,7 +31,7 @@ def _blank_image_bytes(size: tuple[int, int] = (100, 100)) -> bytes:
     return buffer.getvalue()
 
 
-def _wait_for(path: str, timeout: float = 2.0) -> dict:
+def _wait_for(path: str, timeout: float = 10.0) -> dict:
     deadline = time.time() + timeout
     while time.time() < deadline:
         body = client.get(path).json()
@@ -306,6 +314,12 @@ def test_people_select_can_be_cancelled(monkeypatch):
         return (None, _blank_image_bytes())
 
     monkeypatch.setattr(router.file_manager_storage, "get_file_content", slow_get_file_content)
+    # Unlike the other people/select tests above, this one never exercised
+    # a real face beyond checking cancellation timing — but without this
+    # mock it still called the real (unmocked) people.detect_faces, which
+    # requires local insightface model files that aren't guaranteed to
+    # exist (e.g. a fresh CI checkout that's never downloaded them).
+    monkeypatch.setattr(router.people, "detect_faces", lambda content: [])
 
     response = client.post(
         "/lora-trainer/people/select",

@@ -9,7 +9,15 @@ import app.frame_extractor.router as frame_extractor_router
 from app.file_manager import storage as file_manager_storage
 from app.main import app
 
-client = TestClient(app)
+# .__enter__() (never .__exit__()ed — fine, the process exits when the
+# suite finishes) is required, not optional: a bare TestClient(app) never
+# runs the app's lifespan() at all (it only sends a fresh, throwaway ASGI
+# scope per request), so init_db()/etc. never create any tables, and any
+# asyncio.create_task()-based background job gets killed the instant its
+# request's ephemeral event loop tears down. Confirmed by hand: without
+# this, every table in a genuinely fresh Postgres stays absent and
+# background-job tests race-fail unpredictably.
+client = TestClient(app).__enter__()
 
 
 def test_extract_requires_file_or_file_manager_id():

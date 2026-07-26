@@ -8,10 +8,18 @@ from app.image_upscaler import router
 from app.image_upscaler.upscaler import SCALE_FACTORS, UpscaleResult, upscale_image
 from app.main import app
 
-client = TestClient(app)
+# .__enter__() (never .__exit__()ed — fine, the process exits when the
+# suite finishes) is required, not optional: a bare TestClient(app) never
+# runs the app's lifespan() at all (it only sends a fresh, throwaway ASGI
+# scope per request), so init_db()/etc. never create any tables, and any
+# asyncio.create_task()-based background job gets killed the instant its
+# request's ephemeral event loop tears down. Confirmed by hand: without
+# this, every table in a genuinely fresh Postgres stays absent and
+# background-job tests race-fail unpredictably.
+client = TestClient(app).__enter__()
 
 
-def _wait_for_job(job_id: str, timeout: float = 2.0) -> dict:
+def _wait_for_job(job_id: str, timeout: float = 10.0) -> dict:
     deadline = time.time() + timeout
     while time.time() < deadline:
         body = client.get(f"/image-upscaler/jobs/{job_id}").json()

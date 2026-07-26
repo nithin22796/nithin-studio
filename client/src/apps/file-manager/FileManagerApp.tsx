@@ -804,7 +804,6 @@ export function FileManagerApp() {
 
 interface FileGridProps {
   rows: Row[];
-  gridColumns: number;
   containerTop: number;
   containerRef: React.RefObject<HTMLDivElement | null>;
   isDraggingOver: boolean;

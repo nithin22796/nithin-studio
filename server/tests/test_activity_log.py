@@ -4,7 +4,15 @@ from fastapi.testclient import TestClient
 
 import app.main as main
 
-client = TestClient(app=main.app, raise_server_exceptions=False)
+# .__enter__() (never .__exit__()ed — fine, the process exits when the
+# suite finishes) is required, not optional: a bare TestClient(app) never
+# runs the app's lifespan() at all (it only sends a fresh, throwaway ASGI
+# scope per request), so init_db()/etc. never create any tables, and any
+# asyncio.create_task()-based background job gets killed the instant its
+# request's ephemeral event loop tears down. Confirmed by hand: without
+# this, every table in a genuinely fresh Postgres stays absent and
+# background-job tests race-fail unpredictably.
+client = TestClient(app=main.app, raise_server_exceptions=False).__enter__()
 
 
 def make_activity(**overrides) -> dict:

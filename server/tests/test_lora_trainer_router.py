@@ -7,7 +7,15 @@ from app.lora_trainer import db, ec2, local_uploads, router, s3
 from app.lora_trainer.captioning import caption_image
 from app.main import app
 
-client = TestClient(app)
+# .__enter__() (never .__exit__()ed — fine, the process exits when the
+# suite finishes) is required, not optional: a bare TestClient(app) never
+# runs the app's lifespan() at all (it only sends a fresh, throwaway ASGI
+# scope per request), so init_db()/etc. never create any tables, and any
+# asyncio.create_task()-based background job gets killed the instant its
+# request's ephemeral event loop tears down. Confirmed by hand: without
+# this, every table in a genuinely fresh Postgres stays absent and
+# background-job tests race-fail unpredictably.
+client = TestClient(app).__enter__()
 
 
 def make_job(**overrides) -> dict:
@@ -369,6 +377,7 @@ def test_get_job_progress_is_none_before_instance_reports_a_step(monkeypatch):
     monkeypatch.setattr(s3, "output_marker", lambda job_id: None)
     monkeypatch.setattr(ec2, "describe_instance_state", lambda instance_id: "running")
     monkeypatch.setattr(s3, "read_progress", lambda job_id: None)
+    monkeypatch.setattr(s3, "read_phase", lambda job_id: None)
 
     response = client.get("/lora-trainer/jobs/1")
 
@@ -422,6 +431,7 @@ def test_list_jobs_only_returns_active_jobs(monkeypatch):
     monkeypatch.setattr(s3, "output_marker", lambda job_id: None)
     monkeypatch.setattr(ec2, "describe_instance_state", lambda instance_id: "running")
     monkeypatch.setattr(s3, "read_progress", lambda job_id: None)
+    monkeypatch.setattr(s3, "read_phase", lambda job_id: None)
 
     response = client.get("/lora-trainer/jobs")
 
