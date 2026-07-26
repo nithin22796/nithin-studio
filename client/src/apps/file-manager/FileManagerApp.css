@@ -1,0 +1,470 @@
+.file-manager .back-link {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.file-manager h2 {
+  margin: 0 0 1rem;
+}
+
+.file-manager .fm-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.file-manager .fm-header-left {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.file-manager .fm-item-count {
+  color: var(--text);
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.file-manager .fm-select-all {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Search and the "⋮" actions menu share one row (see .fm-toolbar-row) —
+   search grows to fill the available width from the left, matching Google
+   Drive's wide search bar, while actions stays a fixed-width control
+   pinned to the row's right end. */
+.file-manager .fm-toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.file-manager .fm-search {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.file-manager .fm-search input {
+  flex: 1;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.file-manager .fm-search-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.file-manager .fm-clear-search {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.85rem;
+  text-decoration: underline;
+}
+
+.file-manager .fm-breadcrumbs {
+  font-size: 0.9rem;
+}
+
+.file-manager .fm-breadcrumb {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.file-manager .fm-breadcrumb:disabled {
+  color: var(--text);
+  cursor: default;
+}
+
+.file-manager .fm-breadcrumb-sep {
+  margin: 0 0.4rem;
+  color: var(--text);
+}
+
+.file-manager .fm-actions-bar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.file-manager .fm-actions-toggle {
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.file-manager .fm-actions-menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  min-width: 16rem;
+}
+
+.file-manager .fm-actions-menu button {
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.file-manager .fm-actions-menu button:hover {
+  background: var(--border);
+}
+
+/* Real file inputs triggered programmatically (via ref .click()) rather
+   than shown directly — the visible controls are the menu buttons above;
+   these just need to exist in the DOM and be focusable/clickable, not
+   visible, so `display: none` (which some browsers ignore for file
+   inputs' native picker) isn't used. */
+.file-manager .fm-hidden-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.file-manager .fm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.file-manager .fm-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  min-width: 22rem;
+}
+
+.file-manager .fm-modal input {
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.file-manager .fm-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.file-manager .fm-modal-actions button {
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.file-manager .fm-modal-cancel {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+}
+
+.file-manager .fm-modal-create {
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.file-manager .fm-modal-create:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.file-manager .fm-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 0 1rem;
+}
+
+.file-manager .fm-bulk-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  background: var(--accent-bg);
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.file-manager .fm-bulk-bar select,
+.file-manager .fm-bulk-bar button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.file-manager .fm-bulk-bar .fm-bulk-clear {
+  margin-left: auto;
+  border: none;
+  background: none;
+  text-decoration: underline;
+}
+
+.file-manager .error-message {
+  margin: 0 0 1rem;
+  color: #cf222e;
+}
+
+.file-manager .fm-loading {
+  margin: 0 0 1rem;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+/* No border, no inner scrollbar — Google Drive-style: the grid occupies
+   its natural content height (or the rest of the viewport if that's
+   taller — see the inline min-height style in the component, which makes
+   the drop zone cover all empty space below it too), and the browser's
+   own scrollbar scrolls it, instead of being boxed into a fixed-size
+   bordered area that leaves dead space below a handful of items. */
+.file-manager .fm-grid-scroll {
+  position: relative;
+  font-size: 0.9rem;
+}
+
+/* Dashed highlight while a drag is over the grid, plus a centered overlay
+   message — same affordance Google Drive uses. The overlay has
+   `pointer-events: none` so it never itself becomes the drag/drop target;
+   the listeners all live on .fm-grid-scroll, which sits underneath it. */
+.file-manager .fm-grid-scroll.fm-drag-over {
+  outline: 2px dashed var(--accent-border);
+  outline-offset: -2px;
+  border-radius: 8px;
+  background: var(--accent-bg);
+}
+
+.file-manager .fm-drop-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.file-manager .fm-drop-overlay p {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  background: var(--panel);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Rendered via a portal straight into document.body — outside the
+   `.file-manager` div entirely — so it's positioned relative to the
+   viewport and can't be clipped by anything above it in the page
+   container. Deliberately NOT prefixed with `.file-manager` like the rest
+   of this file: CSS matches the real DOM tree, not the React tree, and a
+   portaled node is no longer a descendant of `.file-manager` — that prefix
+   would silently never match here. */
+.fm-row-menu {
+  position: fixed;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  min-width: 9rem;
+}
+
+.fm-row-menu button,
+.fm-row-menu select {
+  width: 100%;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.fm-row-menu button:hover {
+  background: var(--border);
+}
+
+.fm-row-menu-move {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.fm-row-menu-move select {
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--border);
+}
+
+/* A real CSS grid, no virtualization — every item is an actual DOM node.
+   @tanstack/react-virtual's `lanes` mode had a real bug that silently
+   broke positioning for large folders (see FileManagerApp's notes), and
+   this sidesteps that whole class of bug; thumbnails use `loading="lazy"`
+   so the browser doesn't fetch/decode ones that are off-screen. */
+.file-manager .fm-grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.file-manager .fm-card {
+  position: relative;
+  height: 176px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.file-manager .fm-card-check {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  z-index: 2;
+}
+
+.file-manager .fm-card-menu-toggle {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  z-index: 2;
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.file-manager .fm-card-menu-toggle:hover {
+  color: var(--text-h);
+  border-color: var(--accent-border);
+}
+
+.file-manager .fm-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.file-manager .fm-card-thumb {
+  width: 100%;
+  height: 6.5rem;
+  border-radius: 6px;
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+.file-manager .fm-card-thumb-img {
+  object-fit: cover;
+}
+
+.file-manager .fm-card-thumb-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.file-manager .fm-card-name {
+  font-size: 0.8rem;
+  line-height: 1.25;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.file-manager .fm-empty {
+  text-align: center;
+  color: var(--text);
+  padding: 1.5rem 0;
+}

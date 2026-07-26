@@ -1,0 +1,181 @@
+.image-generator .ig-start-panel {
+  max-width: 34rem;
+  margin: 1.25rem 0;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.image-generator .ig-start-blurb {
+  margin: 0 0 1rem;
+  color: var(--paper);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.image-generator .ig-start-controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.image-generator .ig-start-controls select {
+  flex: 1;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.image-generator .ig-start-controls button {
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.image-generator .ig-start-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.image-generator .ig-session-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 1rem 0;
+}
+
+.image-generator .ig-session-bar button {
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.image-generator .ig-session-bar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.image-generator .ig-status {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  color: var(--paper);
+  background: var(--hairline);
+}
+
+.image-generator .ig-status-running {
+  color: var(--steady);
+  background: rgba(95, 174, 141, 0.12);
+}
+
+.image-generator .ig-status-launching,
+.image-generator .ig-status-stopping {
+  color: var(--signal);
+  background: var(--signal-bg);
+}
+
+.image-generator .ig-prompt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 40rem;
+  margin-bottom: 1.5rem;
+}
+
+.image-generator .ig-prompt-form textarea {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.92rem;
+  resize: vertical;
+}
+
+.image-generator .ig-prompt-form textarea:disabled {
+  opacity: 0.5;
+}
+
+.image-generator .ig-prompt-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-generator .ig-prompt-controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--paper);
+}
+
+.image-generator .ig-prompt-controls input[type="number"] {
+  width: 4.5rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.image-generator .ig-prompt-controls button {
+  margin-left: auto;
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.image-generator .ig-prompt-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.image-generator .ig-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 1rem;
+}
+
+.image-generator .ig-gallery-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.image-generator .ig-gallery-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+}
+
+.image-generator .ig-gallery-item span {
+  font-size: 0.8rem;
+  color: var(--paper);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

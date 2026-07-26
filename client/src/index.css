@@ -1,0 +1,95 @@
+:root {
+  --ink: #12141a;
+  --panel: #1a1e27;
+  --hairline: #2b303c;
+  --paper: #a8adb8;
+  --bone: #f1ede2;
+  --signal: #d99a4e;
+  --signal-bg: rgba(217, 154, 78, 0.12);
+  --signal-border: rgba(217, 154, 78, 0.45);
+  --steady: #5fae8d;
+  --fault: #e2574c;
+
+  /* legacy aliases still referenced across app-scoped stylesheets */
+  --text: var(--paper);
+  --text-h: var(--bone);
+  --bg: var(--ink);
+  --border: var(--hairline);
+  --accent: var(--signal);
+  --accent-bg: var(--signal-bg);
+  --accent-border: var(--signal-border);
+  --code-bg: #20242f;
+  --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+  --display: "Space Grotesk", var(--sans);
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --heading: var(--display);
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+  font: 16px/150% var(--sans);
+  letter-spacing: 0.1px;
+  color-scheme: dark;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(217, 154, 78, 0.06), transparent),
+    var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 700;
+  color: var(--text-h);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 1.35rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 118%;
+  margin: 0 0 8px;
+}
+
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 0.85rem;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}

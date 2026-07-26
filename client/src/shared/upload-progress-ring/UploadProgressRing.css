@@ -1,0 +1,86 @@
+.upload-progress-ring {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.upload-progress-ring-spin {
+  animation: upload-ring-spin 0.6s ease;
+}
+
+.upload-progress-ring-exit {
+  animation: upload-ring-exit 0.45s ease forwards;
+}
+
+@keyframes upload-ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes upload-ring-exit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+}
+
+.upload-progress-ring-inner {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.upload-progress-ring-pct {
+  position: relative;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  color: var(--text-h);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.upload-progress-ring-check {
+  width: 65%;
+  height: 65%;
+}
+
+.upload-progress-ring-check-mark {
+  stroke: var(--steady);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  animation: upload-ring-check-mark 0.35s ease forwards;
+}
+
+@keyframes upload-ring-check-mark {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .upload-progress-ring-spin {
+    animation: none;
+  }
+}

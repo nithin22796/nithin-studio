@@ -1,0 +1,116 @@
+.media-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+}
+
+.media-preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.media-preview-counter {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.media-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.media-preview-actions button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.media-preview-actions button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.media-preview-actions button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.media-preview-zoom-level {
+  font-size: 0.85rem;
+  min-width: 3.5rem;
+  text-align: center;
+  opacity: 0.85;
+}
+
+.media-preview-close {
+  font-size: 1rem;
+}
+
+.media-preview-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.media-preview-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.1s ease-out;
+}
+
+.media-preview-stage video {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.media-preview-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-preview-nav:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.media-preview-nav:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.media-preview-prev {
+  left: 1rem;
+}
+
+.media-preview-next {
+  right: 1rem;
+}

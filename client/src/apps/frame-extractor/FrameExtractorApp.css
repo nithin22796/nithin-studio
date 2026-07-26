@@ -1,0 +1,304 @@
+.frame-extractor .back-link {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.frame-extractor h2 {
+  margin: 0 0 1rem;
+}
+
+.frame-extractor .fe-setup {
+  max-width: 640px;
+}
+
+.frame-extractor .fe-step {
+  margin-bottom: 1.5rem;
+}
+
+.frame-extractor .fe-step-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.65;
+  margin-bottom: 0.6rem;
+}
+
+.frame-extractor .fe-source-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.frame-extractor .fe-source-tabs button,
+.frame-extractor .fe-storage-trigger {
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.frame-extractor .fe-source-tabs button.active {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.frame-extractor .fe-storage-trigger {
+  display: block;
+}
+
+.frame-extractor .fe-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 2rem 1rem;
+  border: 1px dashed var(--hairline);
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.frame-extractor .fe-dropzone:hover,
+.frame-extractor .fe-dropzone.drag-active {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.frame-extractor .fe-dropzone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.frame-extractor .fe-dropzone-title {
+  font-size: 0.95rem;
+  color: var(--text-h);
+}
+
+.frame-extractor .fe-dropzone-hint {
+  font-size: 0.8rem;
+  color: var(--paper);
+}
+
+.frame-extractor .fe-selected {
+  display: flex;
+  gap: 1rem;
+  padding: 0.85rem;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.frame-extractor .fe-selected-video {
+  display: block;
+  flex-shrink: 0;
+  height: 9rem;
+  max-width: 10rem;
+  border-radius: 6px;
+  background: #000;
+  object-fit: contain;
+}
+
+.frame-extractor .fe-selected-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.frame-extractor .fe-selected-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.frame-extractor .fe-selected-name {
+  color: var(--text-h);
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.frame-extractor .fe-selected-meta {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--paper);
+}
+
+.frame-extractor .fe-change {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.frame-extractor .fe-change:hover {
+  color: var(--text-h);
+  border-color: var(--accent-border);
+}
+
+.frame-extractor .fe-interval {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.frame-extractor .fe-presets {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.frame-extractor .fe-presets button {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: var(--mono);
+}
+
+.frame-extractor .fe-presets button.active {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.frame-extractor .fe-interval-custom {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--paper);
+}
+
+.frame-extractor .fe-interval-custom input {
+  width: 4.5rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--text-h);
+  font-family: var(--mono);
+}
+
+.frame-extractor .fe-estimate {
+  margin-top: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--signal);
+}
+
+.frame-extractor .fe-process {
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.frame-extractor .fe-process:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.frame-extractor .error-message {
+  margin-top: 1rem;
+  color: var(--fault);
+}
+
+.frame-extractor .results {
+  margin-top: 2rem;
+}
+
+.frame-extractor .results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.frame-extractor .results-header h2 {
+  margin: 0;
+}
+
+.frame-extractor .results-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.frame-extractor .results-actions button {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.frame-extractor .results-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.frame-extractor .frame-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+.frame-extractor .frame-grid li {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.frame-extractor .frame-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.frame-extractor .show-more {
+  display: block;
+  margin: 1.25rem auto 0;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.frame-extractor .show-more:hover {
+  border-color: var(--accent-border);
+}

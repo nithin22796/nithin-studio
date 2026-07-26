@@ -1,0 +1,37 @@
+networks:
+  studio-net:
+    name: studio-net
+    external: true
+
+volumes:
+  uptime-kuma-data:
+
+services:
+  server:
+    build: ./server
+    restart: unless-stopped
+    env_file: ./server/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - studio-net
+
+  client:
+    build: ./client
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    networks:
+      - studio-net
+    depends_on:
+      - server
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    restart: unless-stopped
+    volumes:
+      - uptime-kuma-data:/app/data
+    ports:
+      - "3001:3001"
+    networks:
+      - studio-net

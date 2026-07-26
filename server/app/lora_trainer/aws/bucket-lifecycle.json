@@ -1,0 +1,10 @@
+{
+  "Rules": [
+    {
+      "ID": "expire-job-data",
+      "Filter": { "Prefix": "jobs/" },
+      "Status": "Enabled",
+      "Expiration": { "Days": 1 }
+    }
+  ]
+}

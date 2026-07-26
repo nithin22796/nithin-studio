@@ -1,0 +1,227 @@
+.image-upscaler .back-link {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.image-upscaler h2 {
+  margin: 0 0 1rem;
+}
+
+.image-upscaler .iu-setup {
+  max-width: 640px;
+}
+
+.image-upscaler .iu-step {
+  margin-bottom: 1.5rem;
+}
+
+.image-upscaler .iu-step-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.65;
+  margin-bottom: 0.6rem;
+}
+
+.image-upscaler .iu-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 2rem 1rem;
+  border: 1px dashed var(--hairline);
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.image-upscaler .iu-dropzone:hover,
+.image-upscaler .iu-dropzone.drag-active {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.image-upscaler .iu-dropzone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upscaler .iu-dropzone-title {
+  font-size: 0.95rem;
+  color: var(--text-h);
+}
+
+.image-upscaler .iu-dropzone-hint {
+  font-size: 0.8rem;
+  color: var(--paper);
+}
+
+.image-upscaler .iu-selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.image-upscaler .iu-selected-name {
+  color: var(--text-h);
+  font-size: 0.9rem;
+}
+
+.image-upscaler .iu-change {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.image-upscaler .iu-change:hover {
+  color: var(--text-h);
+  border-color: var(--accent-border);
+}
+
+.image-upscaler .iu-target-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.image-upscaler .iu-target-tabs button {
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.image-upscaler .iu-target-tabs button.active {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.image-upscaler .iu-hint {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--paper);
+}
+
+.image-upscaler .iu-process {
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.image-upscaler .iu-process:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.image-upscaler .iu-process-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.image-upscaler .iu-cancel {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.image-upscaler .iu-cancel:hover {
+  color: var(--fault);
+  border-color: var(--fault);
+}
+
+.image-upscaler .iu-progress-track {
+  margin-top: 0.75rem;
+  width: 100%;
+  max-width: 20rem;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--hairline);
+  overflow: hidden;
+}
+
+.image-upscaler .iu-progress-fill {
+  height: 100%;
+  background: var(--signal);
+  transition: width 0.3s ease;
+}
+
+.image-upscaler .error-message {
+  margin-top: 1rem;
+  color: var(--fault);
+}
+
+.image-upscaler .iu-diagnostics {
+  margin-top: 1rem;
+  color: var(--signal);
+  font-size: 0.88rem;
+}
+
+.image-upscaler .iu-compare {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.image-upscaler .iu-pane {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 420px;
+}
+
+.image-upscaler .iu-pane figcaption {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--paper);
+}
+
+.image-upscaler .iu-pane img {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+  background: #000;
+}
+
+.image-upscaler .iu-pane button {
+  align-self: flex-start;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
