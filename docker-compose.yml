@@ -7,37 +7,10 @@ volumes:
   uptime-kuma-data:
 
 services:
-  # Pulled from GHCR (built + pushed by .github/workflows/docker-publish.yml
-  # on every push to main), not built from local source — `docker compose
-  # pull && docker compose up -d` is the intended flow. Local dev uses
-  # `run.sh` instead, which runs the server/client directly on the host
-  # (not via Docker at all); these two are meant to be able to run at the
-  # same time, which is why the ports/CLIENT_ORIGIN below deliberately
-  # differ from run.sh's 8000/5173 rather than reusing them.
-  server:
-    image: ghcr.io/nithin22796/nithin-studio-server:latest
-    restart: unless-stopped
-    env_file: ./server/.env
-    # Must allow whatever origin the client below is actually served from
-    # (5174) — overrides server/.env's CLIENT_ORIGIN (5173, which is what
-    # run.sh's server uses instead).
-    environment:
-      CLIENT_ORIGIN: http://localhost:5174
-    ports:
-      - "8080:8000"
-    networks:
-      - studio-net
-
-  client:
-    image: ghcr.io/nithin22796/nithin-studio-client:latest
-    restart: unless-stopped
-    ports:
-      - "5174:80"
-    networks:
-      - studio-net
-    depends_on:
-      - server
-
+  # server and client are NOT run in Docker — local dev uses `run.sh`
+  # (native uvicorn + Vite dev server), and if a production-style build is
+  # ever needed, it's run directly on the host (`pnpm build` for the
+  # client, `uv run uvicorn ...` for the server), not containerized.
   uptime-kuma:
     image: louislam/uptime-kuma:1
     restart: unless-stopped
