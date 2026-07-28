@@ -1,0 +1,150 @@
+.image-importer .back-link {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.image-importer h2 {
+  margin: 0 0 0.5rem;
+}
+
+.image-importer-hint {
+  color: var(--text);
+  margin: 0 0 1rem;
+}
+
+.image-importer .error-message {
+  margin: 0 0 1rem;
+  color: #cf222e;
+}
+
+.image-importer-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.image-importer-form input {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.image-importer-form select {
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.image-importer-form button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.image-importer-form button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.image-importer-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text);
+}
+
+.image-importer-status button {
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.image-importer-picker-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.image-importer-picker-bar label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.image-importer-picker-bar select {
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.image-importer-picker-bar button {
+  margin-left: auto;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.image-importer-picker-bar button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.image-importer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.6rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.image-importer-tile {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.image-importer-tile-check {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  z-index: 1;
+}
+
+.image-importer-tile-body {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
+.image-importer-tile img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}

@@ -1,0 +1,88 @@
+.llm-chat .back-link {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.llm-chat h2 {
+  margin: 0 0 1rem;
+}
+
+.llm-chat .error-message {
+  margin: 0 0 1rem;
+  color: #cf222e;
+}
+
+.llm-chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 20rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.llm-chat-empty {
+  color: var(--text);
+  text-align: center;
+  margin: auto;
+}
+
+.llm-chat-bubble {
+  max-width: 75%;
+  padding: 0.55rem 0.85rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.llm-chat-bubble-user {
+  align-self: flex-end;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+
+.llm-chat-bubble-assistant {
+  align-self: flex-start;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.llm-chat-composer {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-end;
+}
+
+.llm-chat-composer textarea {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+.llm-chat-composer button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.llm-chat-composer button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

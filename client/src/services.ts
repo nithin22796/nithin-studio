@@ -29,4 +29,12 @@ export const services: Service[] = [
     description:
       "Generate SDXL images from a trained LoRA on a manually-controlled cloud GPU session.",
   },
+  {
+    name: "llm-chat",
+    description: "Chat with a locally-hosted LLM — nothing leaves this machine.",
+  },
+  {
+    name: "image-importer",
+    description: "Paste a page URL and pull every image on it into file-manager.",
+  },
 ];
