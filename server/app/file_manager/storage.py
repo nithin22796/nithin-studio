@@ -159,7 +159,7 @@ def list_contents(folder_id: int | None = None) -> tuple[list[Folder], list[File
         ).fetchall()
         file_rows = conn.execute(
             "SELECT id, name, folder_id, object_key, content_type, size_bytes, created_at "
-            "FROM files WHERE folder_id IS NOT DISTINCT FROM %s ORDER BY name",
+            "FROM files WHERE folder_id IS NOT DISTINCT FROM %s ORDER BY created_at DESC",
             (folder_id,),
         ).fetchall()
         return [Folder(**r) for r in folder_rows], [FileRecord(**r) for r in file_rows]
@@ -174,7 +174,7 @@ def search(query: str) -> tuple[list[Folder], list[FileRecord]]:
         ).fetchall()
         file_rows = conn.execute(
             "SELECT id, name, folder_id, object_key, content_type, size_bytes, created_at "
-            "FROM files WHERE name ILIKE %s ORDER BY name",
+            "FROM files WHERE name ILIKE %s ORDER BY created_at DESC",
             (pattern,),
         ).fetchall()
         return [Folder(**r) for r in folder_rows], [FileRecord(**r) for r in file_rows]
