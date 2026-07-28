@@ -9,6 +9,8 @@ import { FileManagerApp } from "./apps/file-manager/FileManagerApp";
 import { LoraTrainerApp } from "./apps/lora-trainer/LoraTrainerApp";
 import { ImageUpscalerApp } from "./apps/image-upscaler/ImageUpscalerApp";
 import { ImageGeneratorApp } from "./apps/image-generator/ImageGeneratorApp";
+import { LlmChatApp } from "./apps/llm-chat/LlmChatApp";
+import { ImageImporterApp } from "./apps/image-importer/ImageImporterApp";
 import "./App.css";
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
         <Route path="services/lora-trainer" element={<LoraTrainerApp />} />
         <Route path="services/image-upscaler" element={<ImageUpscalerApp />} />
         <Route path="services/image-generator" element={<ImageGeneratorApp />} />
+        <Route path="services/llm-chat" element={<LlmChatApp />} />
+        <Route path="services/image-importer" element={<ImageImporterApp />} />
         <Route path="services/:name" element={<ServiceDetailPage />} />
       </Route>
     </Routes>

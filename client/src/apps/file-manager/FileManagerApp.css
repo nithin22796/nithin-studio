@@ -319,6 +319,16 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
+.file-manager .fm-upload-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+
 /* Rendered via a portal straight into document.body — outside the
    `.file-manager` div entirely — so it's positioned relative to the
    viewport and can't be clipped by anything above it in the page

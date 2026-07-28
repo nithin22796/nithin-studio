@@ -19,7 +19,9 @@ from app.frame_extractor.router import router as frame_extractor_router
 from app.image_generator.db import init_db as init_image_generator_db
 from app.image_generator.router import poll_session_status
 from app.image_generator.router import router as image_generator_router
+from app.image_importer.router import router as image_importer_router
 from app.image_upscaler.router import router as image_upscaler_router
+from app.llm_chat.router import router as llm_chat_router
 from app.lora_trainer.db import init_db as init_lora_trainer_db
 from app.lora_trainer.router import poll_running_jobs
 from app.lora_trainer.router import router as lora_trainer_router
@@ -55,6 +57,8 @@ app.include_router(file_manager_router)
 app.include_router(lora_trainer_router)
 app.include_router(image_upscaler_router)
 app.include_router(image_generator_router)
+app.include_router(llm_chat_router)
+app.include_router(image_importer_router)
 
 
 def _source_from_path(path: str) -> str:

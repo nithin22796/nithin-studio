@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { MediaPreviewModal } from "../../shared/media-preview";
 import type { MediaItem } from "../../shared/media-preview";
 import { downloadUrl } from "../../shared/download";
+import { UploadProgressRing } from "../../shared/upload-progress-ring/UploadProgressRing";
+import type { UploadItem } from "../../shared/upload-progress-ring/UploadProgressRing";
 import * as api from "./api";
 import type { ContentsResponse, FileItem, FolderItem } from "./types";
 import "./FileManagerApp.css";
@@ -90,6 +92,7 @@ export function FileManagerApp() {
     done: number;
     total: number;
   } | null>(null);
+  const [uploads, setUploads] = useState<UploadItem[]>([]);
   const [actionsOpen, setActionsOpen] = useState(false);
   const actionsRef = useRef<HTMLDivElement>(null);
   const selectAllRef = useRef<HTMLInputElement>(null);
@@ -278,12 +281,46 @@ export function FileManagerApp() {
     });
   }
 
+  // Tracks a single file's upload in `uploads` (rendered as the
+  // UploadProgressRing overlay) while it's in flight, so drag-and-drop and
+  // the file pickers all show the same spinner regardless of entry point.
+  async function uploadFileTracked(
+    file: File,
+    folderId: number | null,
+  ): Promise<FileItem> {
+    const trayId = `${Date.now()}-${Math.random()}-${file.name}`;
+    setUploads((prev) => [
+      ...prev,
+      { id: trayId, name: file.name, progress: 0, status: "uploading" as const },
+    ]);
+    try {
+      const result = await api.uploadFile(file, folderId, (fraction) => {
+        setUploads((prev) =>
+          prev.map((u) => (u.id === trayId ? { ...u, progress: fraction } : u)),
+        );
+      });
+      setUploads((prev) =>
+        prev.map((u) => (u.id === trayId ? { ...u, status: "done", progress: 1 } : u)),
+      );
+      return result;
+    } catch (err) {
+      setUploads((prev) =>
+        prev.map((u) =>
+          u.id === trayId
+            ? { ...u, status: "error", error: err instanceof Error ? err.message : "upload failed" }
+            : u,
+        ),
+      );
+      throw err;
+    }
+  }
+
   function handleUpload(fileList: FileList | null) {
     if (!fileList || fileList.length === 0) return;
     setActionsOpen(false);
     void withErrorHandling(async () => {
       for (const file of Array.from(fileList)) {
-        await api.uploadFile(file, currentFolderId);
+        await uploadFileTracked(file, currentFolderId);
       }
       await refresh();
     });
@@ -329,7 +366,7 @@ export function FileManagerApp() {
           segments.length > 0
             ? await resolveFolderPath(segments, currentFolderId, cache)
             : currentFolderId;
-        await api.uploadFile(file, targetFolderId);
+        await uploadFileTracked(file, targetFolderId);
       }
       await refresh();
     });
@@ -400,7 +437,7 @@ export function FileManagerApp() {
         const targetFolderId = dirPath
           ? await resolveFolderPath(dirPath.split("/"), currentFolderId, cache)
           : currentFolderId;
-        await api.uploadFile(file, targetFolderId);
+        await uploadFileTracked(file, targetFolderId);
       }
       await refresh();
     });
@@ -797,6 +834,12 @@ export function FileManagerApp() {
             void downloadUrl(item.src, item.downloadName ?? item.id)
           }
         />
+      )}
+
+      {uploads.length > 0 && (
+        <div className="fm-upload-backdrop">
+          <UploadProgressRing uploads={uploads} onExited={() => setUploads([])} />
+        </div>
       )}
     </div>
   );
